@@ -1,0 +1,22 @@
+runtime: python38
+env: standard
+
+default_expiration: "1d"
+
+automatic_scaling:
+  max_instances: 2
+  max_pending_latency: automatic
+  max_concurrent_requests: 10
+
+instance_class: F1
+
+handlers:
+  - url: /.*
+    secure: always
+    redirect_http_response_code: 301
+    script: auto
+
+  - url: /favicon\.ico
+    secure: always
+    static_files: static/img/favicon.ico
+    upload: static/img/favicon\.ico
